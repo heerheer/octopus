@@ -27,6 +27,9 @@ func FetchLLMName(ctx context.Context, request model.Channel) ([]string, error) 
 	case outbound.OutboundTypeAnthropic:
 		req.Header.Set("Authorization", "Bearer "+request.Key)
 	}
+	case outbound.OutboundTypeGemini:
+		req.Header.Set("Authorization", "Bearer "+request.Key)
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
